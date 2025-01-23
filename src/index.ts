@@ -7,7 +7,7 @@ import {
   type Character,
 } from "@elizaos/core";
 import { bootstrapPlugin } from "@elizaos/plugin-bootstrap";
-import { createNodePlugin } from "@elizaos/plugin-node";
+import { BrowserService, createNodePlugin, ImageDescriptionService } from "@elizaos/plugin-node";
 import fs from "fs";
 import net from "net";
 import path from "path";
@@ -49,19 +49,18 @@ export function createAgent(
 
   nodePlugin ??= createNodePlugin();
 
+  
+
   return new AgentRuntime({
     databaseAdapter: db,
     token,
     modelProvider: character.modelProvider,
     evaluators: [],
     character,
-    plugins: [
-      bootstrapPlugin,
-      nodePlugin,
-    ].filter(Boolean),
-    providers: [],
+    plugins: [bootstrapPlugin ].filter(Boolean),
+    providers: [etfProvider],
     actions: [],
-    services: [],
+    services: [new BrowserService],
     managers: [],
     cacheManager: cache,
   });
