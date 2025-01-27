@@ -61,7 +61,7 @@ export function createAgent(
     providers: [character.name === "Maikol" ? etfProvider : null].filter(Boolean)
     ,
     actions: [],
-    services: [new BrowserService],
+    services: [],
     managers: [],
     cacheManager: cache,
   });
