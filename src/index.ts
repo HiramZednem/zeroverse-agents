@@ -58,9 +58,8 @@ export function createAgent(
     evaluators: [],
     character,
     plugins: [bootstrapPlugin, nodePlugin].filter(Boolean),
-    providers: [
-      character.name === "Maikol" ? etfProvider : null
-    ],
+    providers: [character.name === "Maikol" ? etfProvider : null].filter(Boolean)
+    ,
     actions: [],
     services: [new BrowserService],
     managers: [],
