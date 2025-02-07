@@ -23,6 +23,7 @@ import {
 } from "./config/index.ts";
 import { initializeDatabase } from "./database/index.ts";
 import { etfProvider } from "./providers/etfProvider.ts";
+import { postTweetAction } from "./actions/postTweet.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -58,9 +59,8 @@ export function createAgent(
     evaluators: [],
     character,
     plugins: [bootstrapPlugin, nodePlugin].filter(Boolean),
-    providers: [character.name === "Maikol" ? etfProvider : null].filter(Boolean)
-    ,
-    actions: [],
+    providers: [character.name === "Maikol" ? etfProvider : null].filter(Boolean),
+    actions: [postTweetAction],
     services: [],
     managers: [],
     cacheManager: cache,
@@ -90,7 +90,7 @@ async function startAgent(character: Character, directClient: DirectClient) {
 
     runtime.clients = await initializeClients(character, runtime);
 
-    // directClient.registerAgent(runtime);
+    directClient.registerAgent(runtime);
 
     // report to console
     elizaLogger.debug(`Started ${character.name} as ${runtime.agentId}`);
