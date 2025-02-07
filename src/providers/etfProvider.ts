@@ -6,7 +6,7 @@ const etfProvider: Provider = {
   get: async (runtime: IAgentRuntime, message: Memory, state?: State) => {
     try {
       // Fetch current BTC price from CoinGecko API
-      const { data }: { data: ScrapperResponse } = await axios.get('https://etfscrapper-349714367197.us-central1.run.app/api/coinglass');
+      const { data }: { data: ScrapperResponse } = await axios.get('https://etfscrapper-781006956087.us-central1.run.app/api/coinglass');
 
       // console.log(data)
       return  `
