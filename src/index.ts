@@ -24,6 +24,8 @@ import {
 import { initializeDatabase } from "./database/index.ts";
 import { etfProvider } from "./providers/etfProvider.ts";
 import { postTweetAction } from "./actions/postTweet.ts";
+import { gearProvider } from "./providers/gearProvider.ts";
+import { varaProvider } from "./providers/varaProvider.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -59,7 +61,11 @@ export function createAgent(
     evaluators: [],
     character,
     plugins: [bootstrapPlugin, nodePlugin].filter(Boolean),
-    providers: [character.name === "Maikol" ? etfProvider : null].filter(Boolean),
+    providers: [
+      character.name === "Maikol" ? etfProvider : null,
+      character.name === "Valorion" ? gearProvider: null,
+      character.name === "Valorion" ? varaProvider: null
+    ].filter(Boolean),
     actions: [postTweetAction],
     services: [],
     managers: [],

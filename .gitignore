@@ -9,3 +9,5 @@ db.sqlite
 .idea
 
 characters/
+
+logs.log
